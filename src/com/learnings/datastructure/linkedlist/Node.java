@@ -22,6 +22,13 @@ public class Node {
 		this.reference = reference;
 	}
 	
-	
-
+	/*@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("[");
+		builder.append("Data: " + this.getData() + " :: ");
+		builder.append("Reference: " + this.getReference());
+		builder.append("]\t");
+		return builder.toString();
+	}*/
 }
