@@ -11,5 +11,21 @@ public class App {
 		while(!stack.isStackEmpty()) {
 			System.out.println(stack.pop());
 		}
+		
+		System.out.println(reverseString("nasetakneV jarnadaM"));
+	}
+	
+	private static String reverseString(String inputString) {
+		char [] sequence = inputString.toCharArray();
+		Stack stack = new Stack(sequence.length);
+		String outputString = "";
+		
+		for(int i=0; !stack.isStackFull(); i++)
+			stack.push(sequence[i]);
+		
+		while(!stack.isStackEmpty())
+			outputString = outputString + stack.pop().toString();
+			
+		return outputString;
 	}
 }

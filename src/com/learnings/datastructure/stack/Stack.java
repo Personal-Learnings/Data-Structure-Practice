@@ -23,7 +23,7 @@ public class Stack {
 		}
 	}
 	
-	private boolean isStackFull() {
+	public boolean isStackFull() {
 		return this.currentIndex == this.size-1;
 	}
 
