@@ -1,44 +1,49 @@
 package com.learnings.datastructure.stack;
 
+/**
+ * 
+ * @author Madanraj Venkatesan
+ *
+ */
 public class Stack {
 	
 	private int size;
-	private Object [] stackData;
+	private Object [] data;
 	private int currentIndex;
 	
 	public Stack(int size) {
 		this.size = size;
-		this.stackData = new Object[this.size];
+		this.data = new Object[this.size];
 		this.currentIndex = -1;
 	}
 	
 	public void push(Object element) {
 
-		if(isStackFull()) {
-			throw new StackFullException("The Stack is Full");
+		if(isFull()) {
+			throw new StackIndexOutOfBoundsException("The Stack is Full");
 		}
 		else {
 			currentIndex++;
-			stackData[currentIndex] = element;
+			data[currentIndex] = element;
 		}
 	}
 	
-	public boolean isStackFull() {
+	public boolean isFull() {
 		return this.currentIndex == this.size-1;
 	}
 
 	public Object pop() {
-		if(isStackEmpty()) {
-			throw new StackFullException("The Stack is Empty");
+		if(isEmpty()) {
+			throw new StackIndexOutOfBoundsException("The Stack is Empty");
 		}
 		else {
 			int tempIndex = currentIndex;
 			currentIndex--;
-			return this.stackData[tempIndex];
+			return this.data[tempIndex];
 		}
 	}
 	
-	public boolean isStackEmpty() {
+	public boolean isEmpty() {
 		return this.currentIndex == -1;
 	}
 }

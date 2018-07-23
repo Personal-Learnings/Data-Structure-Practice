@@ -1,14 +1,19 @@
 package com.learnings.datastructure.stack;
 
+/**
+ * 
+ * @author Madanraj Venkatesan
+ *
+ */
 public class App {
 	
-	public static void main(String[] args) throws StackFullException {
+	public static void main(String[] args) {
 		Stack stack = new Stack(10);
 		stack.push("First");
 		stack.push("Second");
 		stack.push("Third");
 		
-		while(!stack.isStackEmpty()) {
+		while(!stack.isEmpty()) {
 			System.out.println(stack.pop());
 		}
 		
@@ -20,10 +25,10 @@ public class App {
 		Stack stack = new Stack(sequence.length);
 		String outputString = "";
 		
-		for(int i=0; !stack.isStackFull(); i++)
+		for(int i=0; !stack.isFull(); i++)
 			stack.push(sequence[i]);
 		
-		while(!stack.isStackEmpty())
+		while(!stack.isEmpty())
 			outputString = outputString + stack.pop().toString();
 			
 		return outputString;
