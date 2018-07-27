@@ -8,8 +8,8 @@ public class Queue {
 	
 	private int size;
 	private Object [] data;
-	private int currentPushIndex;
-	private int currentPopIndex;
+	private int headIndex;
+	private int rearIndex;
 
 	/**
 	 * <p>
@@ -20,8 +20,8 @@ public class Queue {
 	public Queue(int size) {
 		this.size = size;
 		this.data = new Object[size];
-		this.currentPushIndex = -1;
-		this.currentPopIndex = -1;
+		this.headIndex = -1;
+		this.rearIndex = -1;
 	}
 	
 	/**
@@ -35,8 +35,8 @@ public class Queue {
 			throw new QueueIndexOutOfBoundsException("The Queue is Full");
 		}
 		else {
-			currentPushIndex++;
-			data[currentPushIndex] = element;
+			headIndex++;
+			data[headIndex] = element;
 		}
 	}
 	
@@ -51,8 +51,8 @@ public class Queue {
 			throw new QueueIndexOutOfBoundsException("The Queue is Empty");
 		}
 		else {
-			currentPopIndex++;
-			return data[currentPopIndex];
+			rearIndex++;
+			return data[rearIndex];
 		}
 	}
 
@@ -63,7 +63,7 @@ public class Queue {
 	 * @return isEmpty
 	 */
 	public boolean isEmpty() {
-		return this.currentPopIndex == currentPushIndex;
+		return this.rearIndex == headIndex;
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class Queue {
 	 * @return isFull
 	 */
 	public boolean isFull() {
-		return this.currentPushIndex == size - 1;
+		return this.headIndex == size - 1;
 	}
 }
 
