@@ -11,12 +11,6 @@ public class Queue {
 	private int headIndex;
 	private int rearIndex;
 
-	/**
-	 * <p>
-	 * 		Queue Constructor
-	 * 
-	 * @param size
-	 */
 	public Queue(int size) {
 		this.size = size;
 		this.data = new Object[size];
@@ -24,15 +18,9 @@ public class Queue {
 		this.rearIndex = -1;
 	}
 	
-	/**
-	 * <p>
-	 * 		This method is to Add new elements to the Queue.
-	 * 
-	 * @param element - element.
-	 */
 	public void enqueue(Object element) {
 		if(isFull()) {
-			throw new QueueIndexOutOfBoundsException("The Queue is Full");
+			throw new QueueIndexOutOfBoundsException("The Queue is Full.");
 		}
 		else {
 			headIndex++;
@@ -40,40 +28,27 @@ public class Queue {
 		}
 	}
 	
-	/**
-	 * <p>
-	 * 		This method is to get the existing elements from the Queue.
-	 * 
-	 * @return Object - Current Queue Item
-	 */
 	public Object dequeue() {
 		if(isEmpty()) {
-			throw new QueueIndexOutOfBoundsException("The Queue is Empty");
+			throw new QueueIndexOutOfBoundsException("The Queue is Empty.");
 		}
 		else {
 			rearIndex++;
 			return data[rearIndex];
 		}
 	}
+	
+	public Object peek() {
+		
+		return null;
+		
+	}
 
-	/**
-	 * <p>
-	 * 		Returns whether the Queue is empty or not.
-	 * 
-	 * @return isEmpty
-	 */
 	public boolean isEmpty() {
 		return this.rearIndex == headIndex;
 	}
 
-	/**
-	 * <p>
-	 * 		Returns whether the Queue is full or not.
-	 * 
-	 * @return isFull
-	 */
 	public boolean isFull() {
 		return this.headIndex == size - 1;
 	}
 }
-
