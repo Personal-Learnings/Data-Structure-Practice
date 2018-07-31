@@ -6,16 +6,18 @@ package com.learnings.datastructure.queue;
  */
 public class Queue {
 	
-	private int size;
+	private int maxSize;
 	private Object [] data;
-	private int headIndex;
+	private int frontIndex;
 	private int rearIndex;
+	public int size;
 
 	public Queue(int size) {
-		this.size = size;
+		this.maxSize = size;
 		this.data = new Object[size];
-		this.headIndex = -1;
-		this.rearIndex = -1;
+		this.frontIndex = 0;
+		this.rearIndex = this.maxSize - 1;
+		this.size = 0;
 	}
 	
 	public void enqueue(Object element) {
@@ -23,8 +25,10 @@ public class Queue {
 			throw new QueueIndexOutOfBoundsException("The Queue is Full.");
 		}
 		else {
-			headIndex++;
-			data[headIndex] = element;
+			rearIndex = (rearIndex + 1) % this.maxSize;
+			data[rearIndex] = element;
+			size++;
+			System.out.println("Adding " + element + " to the Queue.");
 		}
 	}
 	
@@ -33,22 +37,39 @@ public class Queue {
 			throw new QueueIndexOutOfBoundsException("The Queue is Empty.");
 		}
 		else {
-			rearIndex++;
-			return data[rearIndex];
+			Object temp = data[frontIndex];
+			frontIndex = (frontIndex + 1) % this.maxSize;
+			size--;
+			System.out.println("Removing " + temp + " from the Queue.");
+			return temp;
 		}
 	}
 	
 	public Object peek() {
-		
-		return null;
-		
+		if(isEmpty()) {
+			throw new QueueIndexOutOfBoundsException("The Queue is Empty.");
+		}
+		else {
+			System.out.println("Front: " + data[frontIndex]);
+			return data[frontIndex];
+		}
+	}
+	
+	public Object rear() {
+		if(isEmpty()) {
+			throw new QueueIndexOutOfBoundsException("The Queue is Empty.");
+		}
+		else {
+			System.out.println("Rear: " + data[rearIndex]);
+			return data[rearIndex];
+		}
 	}
 
 	public boolean isEmpty() {
-		return this.rearIndex == headIndex;
+		return size == 0;
 	}
 
 	public boolean isFull() {
-		return this.headIndex == size - 1;
+		return size == maxSize;
 	}
 }
