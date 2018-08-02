@@ -6,13 +6,15 @@ package com.learnings.datastructure.stack;
  */
 public class Stack {
 	
-	private int size;
+	private int maxSize;
+	public int size;
 	private Object [] data;
 	private int currentIndex;
 	
-	public Stack(int size) {
-		this.size = size;
-		this.data = new Object[this.size];
+	public Stack(int capacity) {
+		this.maxSize = capacity;
+		this.data = new Object[capacity];
+		this.size = 0;
 		this.currentIndex = -1;
 	}
 	
@@ -23,15 +25,12 @@ public class Stack {
 		}
 		else {
 			currentIndex++;
+			size++;
 			System.out.println("Pushing " + element + " to Stack.");
 			data[currentIndex] = element;
 		}
 	}
 	
-	public boolean isFull() {
-		return this.currentIndex == this.size - 1;
-	}
-
 	public Object pop() {
 		
 		Object elementValue;
@@ -43,6 +42,7 @@ public class Stack {
 			elementValue = this.data[this.currentIndex];
 			System.out.println("Popping " + elementValue + " from the Stack.");
 			currentIndex--;
+			size--;
 		}
 		return elementValue;
 	}
@@ -59,9 +59,13 @@ public class Stack {
 			System.out.println("Stack Peek  " + elementValue);
 		}
 		return elementValue;
-	} 
+	}
+	
+	public boolean isFull() {
+		return size == maxSize;
+	}
 	
 	public boolean isEmpty() {
-		return this.currentIndex == -1;
+		return size == 0;
 	}
 }
