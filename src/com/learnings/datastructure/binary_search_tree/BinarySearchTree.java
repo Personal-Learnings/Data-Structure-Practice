@@ -1,56 +1,69 @@
 package com.learnings.datastructure.binary_search_tree;
 
 public class BinarySearchTree {
-	
+
 	private Node rootNode;
-	
-	private Node currentNode;
-	
+
 	public void insert(int data) {
-		
+
 		Node newNode = new Node(data);
-		
 		if(isBinaryTreeEmpty()) {
-			rootNode = currentNode = newNode;
+			rootNode = newNode;
 		}
 		else {
-			if(data <= currentNode.getData()) {
+			Node currentNode = rootNode;
+			//insertUsingLoop(currentNode, newNode);
+			insertUsingRecursion(currentNode, newNode);
+		}
+	}
+
+	public void insertUsingLoop(Node currentNode, Node newNode) {
+
+		while(currentNode != null) {
+			if(newNode.getData() <= currentNode.getData()) {
+				if(currentNode.getLeftNode() == null) {
+					currentNode.setLeftNode(newNode);
+					break;
+				}
+				else {
+					currentNode = currentNode.getLeftNode();
+				}
+			}
+			else {
+				if(currentNode.getRightNode() == null) {
+					currentNode.setRightNode(newNode);
+					break;
+				}
+				else {
+					currentNode = currentNode.getRightNode();
+				}
+			}
+		}
+	}
+
+	public void insertUsingRecursion(Node currentNode, Node newNode) {
+
+		if(newNode.getData() <= currentNode.getData()) {
+			if(currentNode.getLeftNode() == null) {
 				currentNode.setLeftNode(newNode);
 			}
 			else {
+				currentNode = currentNode.getLeftNode();
+				insertUsingRecursion(currentNode, newNode);
+			}
+		}
+		else {
+			if(currentNode.getRightNode() == null) {
 				currentNode.setRightNode(newNode);
 			}
+			else {
+				currentNode = currentNode.getRightNode();
+				insertUsingRecursion(currentNode, newNode);
+			}
 		}
 	}
-	
-	public void viewBinaryTree() {
-		Node tempNode = rootNode;
-		int tabCount = 6;
-		StringBuilder builder = new StringBuilder();
-		
-		//while(tempNode != null) {
-			
-			printTree(builder, tempNode.getData(), tabCount);
-			builder.append("\n");
-			if(null != tempNode.getLeftNode()) {
-				printTree(builder, tempNode.getLeftNode().getData(), tabCount - 1);
-			}
-			if(null != tempNode.getRightNode()) {
-				printTree(builder, tempNode.getRightNode().getData(), tabCount-3);
-			}
-			builder.append("\n");
-		//}
-		System.out.println(builder.toString());
-	}
-	
+
 	public boolean isBinaryTreeEmpty() {
 		return rootNode == null;
-	}
-	
-	private void printTree(StringBuilder builder, int data, int tabCount) {
-		for(int i = 0; i < tabCount; i++) {
-			builder.append("\t");
-		}
-		builder.append(data);
-	}
+	}	
 }
