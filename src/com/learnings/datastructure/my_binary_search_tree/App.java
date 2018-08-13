@@ -22,15 +22,19 @@ public class App {
 		binaryTree.insert(0);
 		binaryTree.insert(0);
 		binaryTree.insert(999);
-		binaryTree.insert(9);
+		binaryTree.insert(8);
 		binaryTree.insert(25);
 		binaryTree.insert(26);
 		binaryTree.insert(75);
+		binaryTree.insert(75);
+		binaryTree.insert(70);
+		binaryTree.insert(9);
 		
-		//System.out.println("Min Node: " + binaryTree.getMinNode().getData());
-		//System.out.println("Max Node: " + binaryTree.getMaxNode().getData());
-		//System.out.println("Searched Node: " + binaryTree.findNode(100).getData());
-		//binaryTree.deleteNode(20);
+		System.out.println("Min Node: " + binaryTree.getMinNode().getKey());
+		System.out.println("Max Node: " + binaryTree.getMaxNode().getKey());
+		System.out.println("Searched Node: " + binaryTree.findNode(100).getKey());
+		binaryTree.deleteNode(40);
+		binaryTree.deleteNode(40);
 		System.out.println(binaryTree);
 	}
 }
