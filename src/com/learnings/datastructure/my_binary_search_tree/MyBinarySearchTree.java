@@ -102,6 +102,32 @@ public class MyBinarySearchTree {
 		return currentNode;
 	}
 	
+	@SuppressWarnings("unused")
+	private Node getInOrderSuccessorNode(Node currentNode) {
+		Node inOrderSuccessorNode = currentNode.getRightNode();
+
+		while(inOrderSuccessorNode != null) {
+			if(inOrderSuccessorNode.getLeftNode() != null)
+				inOrderSuccessorNode = inOrderSuccessorNode.getLeftNode();
+			else
+				break;
+		}
+		return inOrderSuccessorNode;
+	}
+	
+	@SuppressWarnings("unused")
+	private Node getInOrderPredecessorNode(Node currentNode) {
+		Node inOrderPredecessorNode = currentNode.getLeftNode();
+
+		while(inOrderPredecessorNode != null) {
+			if(inOrderPredecessorNode.getRightNode() != null)
+				inOrderPredecessorNode = inOrderPredecessorNode.getRightNode();
+			else
+				break;
+		}
+		return inOrderPredecessorNode;
+	}
+	
 	public void delete(int Key) {
 		// Write Implementation
 	}
