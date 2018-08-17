@@ -1,4 +1,4 @@
-package com.learnings.datastructure.my_binary_search_tree;
+package com.learnings.datastructure.binary_search_tree.my_binary_search_tree;
 
 public class Node {
 	
