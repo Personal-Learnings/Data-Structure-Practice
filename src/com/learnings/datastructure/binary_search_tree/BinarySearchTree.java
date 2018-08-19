@@ -1,5 +1,10 @@
 package com.learnings.datastructure.binary_search_tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.learnings.datastructure.stack.Stack;
+
 public class BinarySearchTree {
 
 	private Node rootNode;
@@ -233,5 +238,91 @@ public class BinarySearchTree {
 
 	public boolean isBinaryTreeEmpty() {
 		return rootNode == null;
-	}	
+	}
+	
+	public void viewBinaryTree() {
+		Stack stack = new Stack(100);;
+		StringBuilder builder = new StringBuilder();
+		String binaryTreeString = viewBinaryTreeUsingRecursive(this.rootNode, "Root", stack, builder);
+		
+		while(!stack.isEmpty()) {
+			stack.pop();
+		}
+		System.out.println(binaryTreeString);
+		
+		System.out.println("*******");
+		builder = new StringBuilder();
+		System.out.println(viewBinaryTreeUsingInterative(this.rootNode, "Root", stack, builder));
+	}
+	
+	private String viewBinaryTreeUsingRecursive(Node currentNode, String position, Stack stack, StringBuilder builder) {
+		
+		if(currentNode != null) {
+
+			if(currentNode != null) {
+				viewBinaryTreeUsingRecursive(currentNode.getLeftNode(), "Left", stack, builder);
+				viewBinaryTreeUsingRecursive(currentNode.getRightNode(), "Right", stack, builder);
+				
+				stack.push(currentNode.getData() + position);
+				builder.append(currentNode.getData() + position);
+			}
+		}
+		return builder.toString();
+	}
+	
+	private String viewBinaryTreeUsingInterative(Node currentNode, String position, Stack stack, StringBuilder builder) {
+
+		List<Node> previousNodeList = new ArrayList<Node>();
+		List<Node> currentNodeList = new ArrayList<Node>();
+		currentNodeList.add(currentNode);
+		
+		while(!isAllElementsNull(currentNodeList)) {
+			
+			previousNodeList.addAll(currentNodeList);
+			currentNodeList.clear();
+			
+			for(Node node : previousNodeList) {
+				
+				String nodeValue = (node != null) ? String.valueOf(node.getData()) : "";
+				
+				if(null != position && position.equals("Root")) {
+					builder.append(nodeValue);
+					position = null;
+				}
+				else {
+						builder.append(nodeValue);
+				}
+				
+				if(node != null && node.getLeftNode() != null) {
+					currentNodeList.add(node.getLeftNode());
+				}
+				else {
+					currentNodeList.add(null);
+				}
+				
+				if(node != null && node.getRightNode() != null) {
+					currentNodeList.add(node.getRightNode());
+				}
+				else {
+					currentNodeList.add(null);
+				}
+			}
+			builder.append("\n");
+			previousNodeList.clear();
+		}
+		return builder.toString();
+	}
+
+	private boolean isAllElementsNull(List<Node> currentNodeList) {
+		
+		boolean isAllElementsNull = true;
+		
+		for(Node node : currentNodeList) {
+			if(node != null) {
+				isAllElementsNull = false;
+				break;
+			}
+		}
+		return isAllElementsNull;
+	}
 }

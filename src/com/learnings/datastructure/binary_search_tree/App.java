@@ -28,7 +28,7 @@ public class App {
 		System.out.println("Min Node: " + binaryTree.getMinNode().getData());
 		System.out.println("Max Node: " + binaryTree.getMaxNode().getData());
 		System.out.println("Searched Node: " + binaryTree.findNode(100).getData());
-		binaryTree.deleteNode(20);
-		System.out.println(binaryTree);
+		binaryTree.deleteNode(101);
+		binaryTree.viewBinaryTree();	
 	}
 }
