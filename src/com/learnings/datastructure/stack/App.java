@@ -23,6 +23,7 @@ public class App {
 		
 		System.out.println();
 		System.out.println(reverseString("nasetakneV jarnadaM"));
+		System.out.println(">>>>" + reverseStringWithoutStack("nasetakneV jarnadaM"));
 	}
 	
 	private static String reverseString(String inputString) {
@@ -36,6 +37,23 @@ public class App {
 		while(!stack.isEmpty())
 			outputString = outputString + stack.pop().toString();
 			
+		return outputString;
+	}
+	
+	private static String reverseStringWithoutStack(String inputString) {
+		String outputString = "";
+		char [] charSequence = inputString.toCharArray();
+		
+		for(int i = 0, j = (charSequence.length - 1); i < j; i++, j--) {
+			char temp = charSequence[i];
+			charSequence[i] = charSequence[j];
+			charSequence[j] = temp;
+		}
+		
+		for(int i = 0; i < charSequence.length; i++) {
+			outputString = outputString + charSequence[i];
+		}
+		
 		return outputString;
 	}
 }
